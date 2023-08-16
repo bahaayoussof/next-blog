@@ -6,9 +6,9 @@
 	color: var(--color-grey-100);
 }
 
-/* .post a {
+.post a {
   color: var(--color-grey-100);
-} */
+}
 
 .image {
 	width: 100%;
