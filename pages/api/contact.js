@@ -3,11 +3,6 @@ import { MongoClient } from "mongodb";
 async function handler(req, res) {
 	if (req.method === "POST") {
 		const { email, name, message } = req.body;
-		console.group();
-		console.log("email", email.includes("@"));
-		console.log("name", name.trim());
-		console.log("message", message.trim());
-		console.group();
 
 		if (
 			!email ||
@@ -28,10 +23,9 @@ async function handler(req, res) {
 		};
 
 		let client;
+		const connectionString = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.yofqh5m.mongodb.net/${process.env.mongodb_database}?retryWrites=true&w=majority`;
 		try {
-			client = await MongoClient.connect(
-				"mongodb+srv://zoka:H2OHXDKOFP18jfDg@cluster0.yofqh5m.mongodb.net/next-blog?retryWrites=true&w=majority"
-			);
+			client = await MongoClient.connect(connectionString);
 		} catch (error) {
 			res.status(500).json({ message: "Could not connect to database!" });
 			return;
