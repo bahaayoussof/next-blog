@@ -1,11 +1,16 @@
+import Head from "next/head";
 import PostContent from "../../components/posts/post-detail/post-content";
 import { getPostData, getPostFiles } from "../../lib/post-util";
 
 const PostDetail = props => {
 	return (
-		<section>
+		<>
+			<Head>
+				<title>{props.post.title}</title>
+				<meta name="description" content={props.post.excerpt} />
+			</Head>
 			<PostContent post={props.post} />
-		</section>
+		</>
 	);
 };
 
